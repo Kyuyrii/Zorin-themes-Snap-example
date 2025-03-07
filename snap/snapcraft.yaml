@@ -1,0 +1,135 @@
+name: gtk-theme-zorin
+build-base: core24
+base: bare
+version: '1.0'
+platforms:
+  all:
+    build-on: [amd64]
+    build-for: [all]
+summary: Themes of Zorin OS.
+description: |
+  A Snap to use Zorin themes in Snap apps.
+grade: stable
+confinement: strict
+
+slots:
+  icon-themes:
+    interface: content
+    source:
+      read:
+        - $SNAP/share/icons/Zorin
+        - $SNAP/share/icons/ZorinBlue-Dark
+        - $SNAP/share/icons/ZorinBlue-Light
+        - $SNAP/share/icons/ZorinGreen-Dark
+        - $SNAP/share/icons/ZorinGreen-Light
+        - $SNAP/share/icons/ZorinGrey-Dark
+        - $SNAP/share/icons/ZorinGrey-Light
+        - $SNAP/share/icons/ZorinOrange-Dark
+        - $SNAP/share/icons/ZorinOrange-Light
+        - $SNAP/share/icons/ZorinPurple-Dark
+        - $SNAP/share/icons/ZorinPurple-Light
+        - $SNAP/share/icons/ZorinRed-Dark
+        - $SNAP/share/icons/ZorinRed-Light
+  gtk-2-themes:
+    interface: content
+    source:
+      read:
+        - $SNAP/share/gtk2/ZorinBlue-Dark
+        - $SNAP/share/gtk2/ZorinBlue-Light
+        - $SNAP/share/gtk2/ZorinGreen-Dark
+        - $SNAP/share/gtk2/ZorinGreen-Light
+        - $SNAP/share/gtk2/ZorinGrey-Dark
+        - $SNAP/share/gtk2/ZorinGrey-Light
+        - $SNAP/share/gtk2/ZorinOrange-Dark
+        - $SNAP/share/gtk2/ZorinOrange-Light
+        - $SNAP/share/gtk2/ZorinPurple-Dark
+        - $SNAP/share/gtk2/ZorinPurple-Light
+        - $SNAP/share/gtk2/ZorinRed-Dark
+        - $SNAP/share/gtk2/ZorinRed-Light
+  gtk-3-themes:
+    interface: content
+    source:
+      read:
+        - $SNAP/share/themes/ZorinBlue-Dark
+        - $SNAP/share/themes/ZorinBlue-Light
+        - $SNAP/share/themes/ZorinGreen-Dark
+        - $SNAP/share/themes/ZorinGreen-Light
+        - $SNAP/share/themes/ZorinGrey-Dark
+        - $SNAP/share/themes/ZorinGrey-Light
+        - $SNAP/share/themes/ZorinOrange-Dark
+        - $SNAP/share/themes/ZorinOrange-Light
+        - $SNAP/share/themes/ZorinPurple-Dark
+        - $SNAP/share/themes/ZorinPurple-Light
+        - $SNAP/share/themes/ZorinRed-Dark
+        - $SNAP/share/themes/ZorinRed-Light
+  
+parts:
+  # Zorin icons 3.3.1
+  icon-themes:
+    plugin: dump
+    source: https://github.com/ZorinOS/zorin-icon-themes/archive/refs/tags/3.3.1.tar.gz
+    override-build: |
+      snapcraftctl build
+      pwd
+      ls -l
+      mkdir -p $CRAFT_PART_INSTALL/share/icons
+      mv -f $CRAFT_PART_INSTALL/Zorin* $CRAFT_PART_INSTALL/share/icons
+    stage:
+      - share/icons/Zorin
+      - share/icons/ZorinBlue-Dark
+      - share/icons/ZorinBlue-Light
+      - share/icons/ZorinGreen-Dark
+      - share/icons/ZorinGreen-Light
+      - share/icons/ZorinGrey-Dark
+      - share/icons/ZorinGrey-Light
+      - share/icons/ZorinOrange-Dark
+      - share/icons/ZorinOrange-Light
+      - share/icons/ZorinPurple-Dark
+      - share/icons/ZorinPurple-Light
+      - share/icons/ZorinRed-Dark
+      - share/icons/ZorinRed-Light
+  # Zorin GTK themes 4.2.1
+  gtk-2-themes:
+    plugin: dump
+    source: https://github.com/ZorinOS/zorin-desktop-themes/archive/refs/tags/4.2.1.tar.gz
+    override-build: |
+      snapcraftctl build
+      pwd
+      ls -l
+      mkdir -p $CRAFT_PART_INSTALL/share/gtk2
+      mv -f $CRAFT_PART_INSTALL/Zorin* $CRAFT_PART_INSTALL/share/gtk2
+    stage:
+      - share/gtk2/ZorinBlue-Dark
+      - share/gtk2/ZorinBlue-Light
+      - share/gtk2/ZorinGreen-Dark
+      - share/gtk2/ZorinGreen-Light
+      - share/gtk2/ZorinGrey-Dark
+      - share/gtk2/ZorinGrey-Light
+      - share/gtk2/ZorinOrange-Dark
+      - share/gtk2/ZorinOrange-Light
+      - share/gtk2/ZorinPurple-Dark
+      - share/gtk2/ZorinPurple-Light
+      - share/gtk2/ZorinRed-Dark
+      - share/gtk2/ZorinRed-Light
+  gtk-3-themes:
+    plugin: dump
+    source: https://github.com/ZorinOS/zorin-desktop-themes/archive/refs/tags/4.2.1.tar.gz
+    override-build: |
+      snapcraftctl build
+      pwd
+      ls -l
+      mkdir -p $CRAFT_PART_INSTALL/share/themes
+      mv -f $CRAFT_PART_INSTALL/Zorin* $CRAFT_PART_INSTALL/share/themes
+    stage:
+      - share/themes/ZorinBlue-Dark
+      - share/themes/ZorinBlue-Light
+      - share/themes/ZorinGreen-Dark
+      - share/themes/ZorinGreen-Light
+      - share/themes/ZorinGrey-Dark
+      - share/themes/ZorinGrey-Light
+      - share/themes/ZorinOrange-Dark
+      - share/themes/ZorinOrange-Light
+      - share/themes/ZorinPurple-Dark
+      - share/themes/ZorinPurple-Light
+      - share/themes/ZorinRed-Dark
+      - share/themes/ZorinRed-Light
